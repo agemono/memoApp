@@ -9,10 +9,22 @@
 		h1{ font-size:18pt; font-weight:bold; color:gray;}
 		body {  font-size:13pt; color:gray; margin:5px 25px;}
 		pre { border: sorid 3px #ddd; padding: 10px; }
+		tr{margin:5px;}
+		th{padding:5px; color:white; background:darkgray;}
+		td{padding:5px; color:black; background:#f0f0f0;}
 		</style>
 
 </head>
 <body>
-	<h1></h1>
+	<h1>ログインページ</h1>
+	<table>
+	<form method="post" action="/" th:object="${formModel}">
+	<tr><td><label for="id">ログインID</label></td>
+	<td><input type="text" id="id" th:value="*{id}" /></td></tr>
+	<tr><td><label for="password">パスワード</label></td>
+	<td><input type="text" password="password" th:value="*{password}" /></td></tr>
+
+	</form>
+	</table>
 </body>
 </html>
