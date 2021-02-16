@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type"
+		  content="text/html; charset=UTF-8" />
+<title>登録画面</title>
+
+</head>
+
+<body>
+	<table>
+		<form method="post" action="/" th:object="${formModel}">
+			<tr><td><label for="id">ログインID</label></td>
+			<td><input type="text" id="id" th:value="*{id}" /></td></tr>
+			<tr><td><label for="password">パスワード</label></td>
+			<td><input type="text" password="password" th:value="*{password}" /></td></tr>
+			<tr><td><label for="password">パスワード確認</label></td>
+			<td><input type="text" password="password" th:value="*{checkpassword}" /></td></tr>
+			<button class="btn-primary" type="submit">ログイン</button>
+	</form>
+	</table>
+</body>
+</html>
