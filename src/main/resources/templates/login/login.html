@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://ww.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>memoApp</title>
@@ -18,7 +18,7 @@
 <body>
 	<h1>ログインページ</h1>
 	<table>
-		<form method="post" action="/" th:object="${formModel}">
+		<form method="post" action="login/login" th:object="${formModel}">
 			<tr><td><label for="id">ログインID</label></td>
 			<td><input type="text" id="id" th:value="*{id}" /></td></tr>
 			<tr><td><label for="password">パスワード</label></td>
@@ -26,7 +26,7 @@
 			<button class="btn-primary" type="submit">ログイン</button>
 		</form>
 	</table>
-	<a th:herf="@{'/SignUp"}>ユーザー登録</a>
+	<a th:herf="@{'/SignUp'}">ユーザー登録</a>
 
 
 </body>

@@ -2,9 +2,10 @@ package com.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.repositories.loginDataRepository;
 
@@ -15,14 +16,17 @@ public class LoginController<MyDataRepository> {
 	@Autowired
 	loginDataRepository repository;
 
+	@RequestMapping(value = "login/login",method = RequestMethod.GET)
+	public ModelAndView getSignUp(@ModelAttribute loginData logindata, ModelAndView mav) {
+		mav.setViewName("login");
+		mav.addObject("title", "Logindata");
 
-	@GetMapping("/login")
-	public String getLogin(Model model) {
-		return "login/login";
+		return mav;
 	}
 
-	@PostMapping("/login")
-	public String postLogin(Model model) {
-		return "login/login";
+	@RequestMapping(value = "login/login",method = RequestMethod.POST)
+	public ModelAndView postSignUp(ModelAndView mav) {
+
+		return mav;
 	}
 }
