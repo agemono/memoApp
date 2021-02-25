@@ -16,17 +16,17 @@ public class LoginController<MyDataRepository> {
 	@Autowired
 	loginDataRepository repository;
 
-	@RequestMapping(value = "login/login",method = RequestMethod.GET)
+	@RequestMapping(value = "/login",method = RequestMethod.GET)
 	public ModelAndView getSignUp(@ModelAttribute loginData logindata, ModelAndView mav) {
 		mav.setViewName("login");
-		mav.addObject("title", "Logindata");
+		mav.addObject("title", "logindata");
 
 		return mav;
 	}
 
-	@RequestMapping(value = "login/login",method = RequestMethod.POST)
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public ModelAndView postSignUp(ModelAndView mav) {
-
+		mav.setViewName("login");
 		return mav;
 	}
 }

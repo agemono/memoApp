@@ -15,7 +15,7 @@ public class SignUpController {
 	@Autowired
 	loginDataRepository repository ;
 
-	@RequestMapping(value = "login/SignUp",method = RequestMethod.GET)
+	@RequestMapping(value = "/SignUp",method = RequestMethod.GET)
 	public ModelAndView getSignUp(@ModelAttribute loginData logindata, ModelAndView mav) {
 		mav.setViewName("SignUp");
 		mav.addObject("title", "登録画面");
@@ -23,12 +23,12 @@ public class SignUpController {
 		return mav;
 	}
 
-	@RequestMapping(value = "login/SignUp",method = RequestMethod.POST)
+	@RequestMapping(value = "/SignUp",method = RequestMethod.POST)
 	@Transactional(readOnly=false)
 	public ModelAndView form(@ModelAttribute("formModel")
 			loginData logindata,
 			ModelAndView mav) {
-
+		mav.setViewName("SignUp");
 
 		return new ModelAndView("redirect:/login");
 	}

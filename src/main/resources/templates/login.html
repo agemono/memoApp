@@ -18,15 +18,15 @@
 <body>
 	<h1>ログインページ</h1>
 	<table>
-		<form method="post" action="login/login" th:object="${formModel}">
-			<tr><td><label for="id">ログインID</label></td>
-			<td><input type="text" id="id" th:value="*{id}" /></td></tr>
-			<tr><td><label for="password">パスワード</label></td>
-			<td><input type="text" password="password" th:value="*{password}" /></td></tr>
+		<form method="post" action="/login" th:object="${formModel}">
+			<tr><td><label>ログインID</label></td>
+			<td><input type="text"  th:value="  ${id}" /></td></tr>
+			<tr><td><label >パスワード</label></td>
+			<td><input type="text"  th:value="${password}" /></td></tr>
 			<button class="btn-primary" type="submit">ログイン</button>
 		</form>
 	</table>
-	<a th:herf="@{'/SignUp'}">ユーザー登録</a>
+	<a th:href="@{'/SignUp'}">ユーザー登録</a>
 
 
 </body>
