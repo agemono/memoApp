@@ -1,31 +1,27 @@
-package com.login;
+package com.memo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name= "loginData")
 
-public class loginData {
-
+public class memoData {
 	@Id
 
-
-
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter
 	@Setter
 	@Column(length = 50, nullable = false)
-	private String userid;
+	private String id;
 
 	@Getter
 	@Setter
-	@Column(length = 50, nullable = false)
-	private String userpassword;
+	@Column(length = 200)
+	private String Memo;
 
 	/*public String getId() {
 		return id;
@@ -35,12 +31,12 @@ public class loginData {
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMemo() {
+		return Memo;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-
+	public void setMemo(String Memo) {
+		this.Memo = Memo;
 	}*/
+
 }

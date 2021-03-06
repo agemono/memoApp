@@ -1,33 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>memoApp</title>
-	<meta http-equiv="Content-Type"
-		  content="text/html; charset=UTF-8" />
-		<style>
-		h1{ font-size:18pt; font-weight:bold; color:gray;}
-		body {  font-size:13pt; color:gray; margin:5px 25px;}
-		pre { border: sorid 3px #ddd; padding: 10px; }
-		tr{margin:5px;}
-		th{padding:5px; color:white; background:darkgray;}
-		td{padding:5px; color:black; background:#f0f0f0;}
-		</style>
+    <meta charset="UTF-8">
+    <title>memoApp</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            color: gray;
+        }
+        
+        body {
+            font-size: 13pt;
+            color: gray;
+            margin: 5px 25px;
+        }
+        
+        pre {
+            border: sorid 3px #ddd;
+            padding: 10px;
+        }
+        
+        tr {
+            margin: 5px;
+        }
+        
+        th {
+            padding: 5px;
+            color: white;
+            background: darkgray;
+        }
+        
+        td {
+            padding: 5px;
+            color: black;
+            background: #f0f0f0;
+        }
+    </style>
 
 </head>
+
 <body>
-	<h1>ログインページ</h1>
-	<table>
-		<form method="post" action="/login" th:object="${formModel}">
-			<tr><td><label>ログインID</label></td>
-			<td><input type="text"  th:value="  ${id}" /></td></tr>
-			<tr><td><label >パスワード</label></td>
-			<td><input type="text"  th:value="${password}" /></td></tr>
-			<button class="btn-primary" type="submit">ログイン</button>
-		</form>
-	</table>
-	<a th:href="@{'/SignUp'}">ユーザー登録</a>
+    <h1>ログインページ</h1>
+    <table>
+        <form method="post" action="/login" th:object="${logindata}">
+            <tr>
+                <td><label>ログインID</label></td>
+                <td><input type="text" name="id" th:value="*{id}" required/></td>
+            </tr>
+            <tr>
+                <td><label>パスワード</label></td>
+                <td><input type="text" name="password" th:value="*{password}" required/></td>
+            </tr>
+            <button class="btn-primary" type="submit">ログイン</button>
+        </form>
+    </table>
+    <a th:href="@{'/SignUp'}">ユーザー登録</a>
 
 
 </body>
+
 </html>

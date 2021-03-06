@@ -1,23 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta http-equiv="Content-Type"
-		  content="text/html; charset=UTF-8" />
-<title>登録画面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>登録画面</title>
+    <style>
+        h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            color: gray;
+        }
+        
+        body {
+            font-size: 13pt;
+            color: gray;
+            margin: 5px 25px;
+        }
+        
+        pre {
+            border: sorid 3px #ddd;
+            padding: 10px;
+        }
+        
+        tr {
+            margin: 5px;
+        }
+        
+        th {
+            padding: 5px;
+            color: white;
+            background: darkgray;
+        }
+        
+        td {
+            padding: 5px;
+            color: black;
+            background: #f0f0f0;
+        }
+    </style>
 
 </head>
 
 <body>
-	<div>
-	<table>
-		<form method="post" action="/SignUp" th:object="${formModel}">
-			<tr><td><label >ログインID</label></td>
-			<td><input type="text"  th:value="${id}" /></td></tr>
-			<tr><td><label >パスワード</label></td>
-			<td><input type="text"  th:value="${password}" /></td></tr>
-			<button class="btn-primary" type="submit">登録</button>
-	</form>
-	</table>
-	</div>
+    <div>
+        <table>
+            <form method="post" action="/SignUp" th:object="${logindata}">
+                <tr>
+                    <td><label>ログインID</label></td>
+                    <td><input type="text" name="id" th:value="*{id}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>パスワード</label></td>
+                    <td><input type="text" name="password" th:value="*{password}" required/></td>
+                </tr>
+                <button class="btn-primary" type="submit">登録</button>
+            </form>
+        </table>
+    </div>
 </body>
+
 </html>

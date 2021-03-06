@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type"
+		  content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" action="/memo" th:object="${formModel}"></form>
+	<div>
+		<textarea name="memo"th:text="*{memo}"cols="20" rows="5"></textarea>
+		<button type="submit">投稿</button>
+		<button class="btn-primary" type="submit">サインアウト</button>
+	</div>
+</body>
+</html>
