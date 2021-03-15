@@ -25,32 +25,35 @@ public class LoginController<MyDataRepository> {
 		//テストデータ
 		loginData testuser = new loginData();
 		testuser.setUserid("shota");
-		testuser.setUserpassword("shota");
+		testuser.setPassword("shota");
 		repository.saveAndFlush(testuser);
 
 	}
 
-	@RequestMapping(value = "/login",method = RequestMethod.GET)
-	public ModelAndView getSignUp(@ModelAttribute loginData logindata, ModelAndView mav) {
-		mav.setViewName("login");
-		mav.addObject("title", "logindata");
+		@RequestMapping(value = "/login",method = RequestMethod.GET)
+		public ModelAndView getLogin( ModelAndView mav,
+										@ModelAttribute("logindata")loginData logindata) {
+			mav.setViewName("login");
+			return mav;
+		}
 
-		return mav;
-	}
-
-	@RequestMapping(value = "/login",method = RequestMethod.POST)
-	@Transactional(readOnly = true)
-	public ModelAndView postSignUp(
-									@ModelAttribute("logindata") loginData logindata,
-			/*@PathVariable String id,
-			@PathVariable String password,*/
+	@RequestMapping(value = "login",method = RequestMethod.POST)
+	@Transactional(readOnly = false)
+	public ModelAndView Login(
+			/*@RequestParam("logindata") loginData ld,*/
+			@ModelAttribute("logindata") loginData ld,
+			/*			@ModelAttribute("userid") String userid,
+						@ModelAttribute("pasword") String password,*/
 									ModelAndView mav) {
 		mav.setViewName("login");
 
-		loginData data = repository.findByUserid((String)logindata.getUserid());
+		loginData data = repository.findByUserid((String) ld.getUserid());
 
-		if(data.getUserpassword() == logindata.getUserpassword()) {
-			mav.setViewName("memo");
+		String pass1 = data.getPassword();
+		String pass2 = ld.getPassword();
+		if(pass1.equals(pass2)) {
+
+			return new ModelAndView("redirect:/memo");
 		}
 		return mav;
 	}

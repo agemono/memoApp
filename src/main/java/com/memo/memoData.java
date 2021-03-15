@@ -1,5 +1,7 @@
 package com.memo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,6 +24,11 @@ public class memoData {
 	@Setter
 	@Column(length = 200)
 	private String Memo;
+
+	@Getter
+	@Setter
+	@Column
+	private Date date;
 
 	/*public String getId() {
 		return id;

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>memoApp</title>
+    <title>ログイン画面</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
         h1 {
@@ -48,11 +48,11 @@
         <form method="post" action="/login" th:object="${logindata}">
             <tr>
                 <td><label>ログインID</label></td>
-                <td><input type="text" name="id" th:value="*{id}" required/></td>
+                <td><input type="text" name="userid" th:value="*{userid}" required/></td>
             </tr>
             <tr>
                 <td><label>パスワード</label></td>
-                <td><input type="text" name="password" th:value="*{password}" required/></td>
+                <td><input type="password" name="password" th:value="*{password}" required/></td>
             </tr>
             <button class="btn-primary" type="submit">ログイン</button>
         </form>

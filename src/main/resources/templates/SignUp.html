@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>登録画面</title>
     <style>
@@ -10,28 +11,28 @@
             font-weight: bold;
             color: gray;
         }
-        
+
         body {
             font-size: 13pt;
             color: gray;
             margin: 5px 25px;
         }
-        
+
         pre {
             border: sorid 3px #ddd;
             padding: 10px;
         }
-        
+
         tr {
             margin: 5px;
         }
-        
+
         th {
             padding: 5px;
             color: white;
             background: darkgray;
         }
-        
+
         td {
             padding: 5px;
             color: black;
@@ -44,19 +45,18 @@
 <body>
     <div>
         <table>
-            <form method="post" action="/SignUp" th:object="${logindata}">
-                <tr>
-                    <td><label>ログインID</label></td>
-                    <td><input type="text" name="id" th:value="*{id}" required/></td>
-                </tr>
-                <tr>
-                    <td><label>パスワード</label></td>
-                    <td><input type="text" name="password" th:value="*{password}" required/></td>
-                </tr>
+            <form method="post" action="/SignUp" th:object="${signupdata}">
+
+                <label>ログインID</label>
+                <input type="text" id="userid" name="userid" th:text="*{userid}" required/>
+                <label>パスワード</label>
+                <input type="password" id="passowrd" name="password" th:text="*{password}" required/>
+
                 <button class="btn-primary" type="submit">登録</button>
             </form>
         </table>
     </div>
+    <a th:href="@{'/login'}">ログイン画面に戻る</a>
 </body>
 
 </html>

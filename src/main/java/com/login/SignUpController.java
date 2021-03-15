@@ -15,20 +15,19 @@ public class SignUpController {
 	loginDataRepository repository ;
 
 	@RequestMapping(value = "/SignUp",method = RequestMethod.GET)
-	public ModelAndView getSignUp(@ModelAttribute ("formModel")
-									loginData logindata,
-									ModelAndView mav) {
+	public ModelAndView getSignUp(
+									ModelAndView mav,
+									@ModelAttribute("signupdata")loginData signupdata) {
 		mav.setViewName("SignUp");
-		mav.addObject("title", "登録画面");
-		Iterable<loginData> data = repository.findAll();
-		mav.addObject(data);
+		/*mav.addObject("signupdata", new loginData());*/
 		return mav;
 	}
 
 	@RequestMapping(value = "/SignUp",method = RequestMethod.POST)
-	public ModelAndView form(@ModelAttribute("logindata") loginData logindata,
+	public ModelAndView postSignUp(@ModelAttribute("signupdata") loginData logindata,
 								ModelAndView mav) {
 		mav.setViewName("SignUp");
+		mav.addObject("title", "登録画面");
 		repository.saveAndFlush(logindata);
 		return new ModelAndView("redirect:/login");
 	}

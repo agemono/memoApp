@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta http-equiv="Content-Type"
-		  content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>メモ投稿</title>
 </head>
+
 <body>
-<form method="post" action="/memo" th:object="${formModel}"></form>
-	<div>
-		<textarea name="memo"th:text="*{memo}"cols="20" rows="5"></textarea>
-		<button type="submit">投稿</button>
-		<button class="btn-primary" type="submit">サインアウト</button>
-	</div>
+    <form method="post" action="/memo" th:object="${memodata}">
+    <div>
+        <textarea name="memo"  th:value="*{memo}" cols="20" rows="5"></textarea>
+        <button type="submit">投稿</button>
+
+
+    </div>
+    </form>
+    <button class="btn-primary" type="submit" th:href="@{'/login'}">サインアウト</button>
 </body>
+
 </html>
