@@ -3,19 +3,21 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href ="memo.css" rel="stylesheet" media="all">
     <title>メモ投稿</title>
 </head>
 
 <body>
+	<h1 th:text = "title">やることをかこう</h1>
+	<div class="login_Form">
     <form method="post" action="/memo" th:object="${memodata}">
-    <div>
-        <textarea name="memo"  th:value="*{memo}" cols="20" rows="5"></textarea>
-        <button type="submit">投稿</button>
+    			<textarea name="memo"  th:value="*{memo}" cols="50" rows="30"></textarea>
+			<button type="submit">投稿</button>
+     		<button class="btn-primary" type="submit" th:href="@{'/login'}">サインアウト</button>
 
 
-    </div>
     </form>
-    <button class="btn-primary" type="submit" th:href="@{'/login'}">サインアウト</button>
+</div>
 </body>
 
 </html>
