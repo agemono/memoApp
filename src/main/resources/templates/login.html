@@ -12,17 +12,17 @@
 <body>
     <h1>ログインページ</h1>
     <div class="login_Form">
-        <form method=" post " action="/login " th:object="${logindata} ">
+        <form method="post " action="/login " th:object="${logindata} ">
 
             <ul>
                 <li>
                     <label>ログインID</label>
-                    <input type="text " name="userid " th:value="*{userid} " required/></td>
+                    <input type="text " name="userid " th:value="*{userid} " required/>
 
                 </li>
                 <li>
                     <label>パスワード</label>
-                    <input type="password " name="password " th:value="*{password} " required/></td>
+                    <input type="password " name="password " th:value="*{password} " required/>
                 </li>
                 <button class="btn-primary " type="submit ">ログイン</button>
 
