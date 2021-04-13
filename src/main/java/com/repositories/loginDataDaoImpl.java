@@ -93,14 +93,24 @@ public class loginDataDaoImpl implements UserDao {
 
 	@Override
 	public int updateOne(User user) throws DataAccessException {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
+		int rowNumber = jdbc.update("UPDATE user_info("
+				+ "user_id"
+				+ "user_pssword)"
+				+ "VALUES(?,?)"
+				,user.getUserid()
+				,user.getPassword());
+		return rowNumber;
 	}
 
 	@Override
 	public int deleteOne(User user) throws DataAccessException {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
+		int rowNumber = jdbc.update("UPDATE user_info("
+				+ "user_id"
+				+ "user_pssword)"
+				+ "VALUES(?,?)"
+				,user.getUserid()
+				,user.getPassword());
+		return rowNumber;
 	}
 
 	
