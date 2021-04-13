@@ -3,13 +3,13 @@ package com.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.login.loginData;
+import com.login.User;
 
 @Repository
 
-public interface loginDataRepository extends JpaRepository<loginData, String>{
+public interface loginDataRepository extends JpaRepository<User, String>{
 
-	loginData findByUserid(String userid) ;
+	User findByUserid(String userid) ;
 
 
 }

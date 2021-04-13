@@ -45,7 +45,7 @@
 <body>
     <div>
         <table>
-            <form method="post" action="/SignUp" th:object="${signupdata}">
+            <form method="post" action="/SignUp" th:object="${formdata}">
 
                 <label>ログインID</label>
                 <input type="text" id="userid" name="userid" th:text="*{userid}" required/>

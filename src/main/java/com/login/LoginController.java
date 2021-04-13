@@ -23,7 +23,7 @@ public class LoginController<MyDataRepository> {
 	@PostConstruct
 	public void init() {
 		//テストデータ
-		loginData testuser = new loginData();
+		User testuser = new User();
 		testuser.setUserid("shota");
 		testuser.setPassword("shota");
 		repository.saveAndFlush(testuser);
@@ -32,7 +32,7 @@ public class LoginController<MyDataRepository> {
 
 		@RequestMapping(value = "/login",method = RequestMethod.GET)
 		public ModelAndView getLogin( ModelAndView mav,
-										@ModelAttribute("logindata")loginData logindata) {
+										@ModelAttribute("logindata")User logindata) {
 			mav.setViewName("login");
 			return mav;
 		}
@@ -41,13 +41,13 @@ public class LoginController<MyDataRepository> {
 	@Transactional(readOnly = false)
 	public ModelAndView Login(
 			/*@RequestParam("logindata") loginData ld,*/
-			@ModelAttribute("logindata") loginData ld,
+			@ModelAttribute("logindata") User ld,
 			/*			@ModelAttribute("userid") String userid,
 						@ModelAttribute("pasword") String password,*/
 									ModelAndView mav) {
 		mav.setViewName("login");
 
-		loginData data = repository.findByUserid((String) ld.getUserid());
+		User data = repository.findByUserid((String) ld.getUserid());
 
 		String pass1 = data.getPassword();
 		String pass2 = ld.getPassword();

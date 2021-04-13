@@ -11,11 +11,9 @@ import lombok.Setter;
 @Entity
 @Table(name= "loginData")
 
-public class loginData {
+public class User {
 
 	@Id
-
-
 	@Getter
 	@Setter
 	@Column(length = 50, nullable = false)

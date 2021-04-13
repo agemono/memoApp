@@ -3,7 +3,7 @@ CREATE TABLE user_info(
     user_password(50)
 );
 INSERT INTO user_info(
-    VALUES(shota,logintest)
+    VALUES(testuser,logintest)
 );
 
 CREATE TABLE user_memo(
