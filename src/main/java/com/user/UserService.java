@@ -1,15 +1,15 @@
-package com.login;
+package com.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.repositories.UserDao;
+import com.jdbc.UserDaojdbc;
 
 @Service
 public class UserService {
 	
 	@Autowired
-	UserDao dao;
+	UserDaojdbc dao;
 	
 	public boolean insert(User user) {
 		int rowNumber = dao.insertOne(user);

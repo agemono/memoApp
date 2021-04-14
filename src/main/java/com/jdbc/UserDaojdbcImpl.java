@@ -1,4 +1,4 @@
-package com.repositories;
+package com.jdbc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.login.User;
+import com.user.User;
 
-public class loginDataDaoImpl implements UserDao {
+public class UserDaojdbcImpl implements UserDaojdbc {
 
 	@Autowired
 	JdbcTemplate jdbc;
@@ -94,6 +94,7 @@ public class loginDataDaoImpl implements UserDao {
 	@Override
 	public int updateOne(User user) throws DataAccessException {
 		int rowNumber = jdbc.update("UPDATE user_info("
+				+ "SET "
 				+ "user_id"
 				+ "user_pssword)"
 				+ "VALUES(?,?)"
@@ -103,13 +104,14 @@ public class loginDataDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int deleteOne(User user) throws DataAccessException {
-		int rowNumber = jdbc.update("UPDATE user_info("
+	public int deleteOne(String userId) throws DataAccessException {
+		int rowNumber = jdbc.update("DELETE FROM user_info("
+				+ "WHERE "
 				+ "user_id"
-				+ "user_pssword)"
-				+ "VALUES(?,?)"
-				,user.getUserid()
-				,user.getPassword());
+				+ "=?"
+				
+				,userId
+				);
 		return rowNumber;
 	}
 

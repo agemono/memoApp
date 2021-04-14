@@ -1,12 +1,12 @@
-package com.repositories;
+package com.jdbc;
 
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.login.User;
+import com.user.User;
 
-public interface UserDao {
+public interface UserDaojdbc {
 	public int count() throws DataAccessException;
 	
 	public int insertOne(User user)throws DataAccessException;
@@ -17,5 +17,7 @@ public interface UserDao {
 	
 	public int updateOne(User user)throws DataAccessException;
 	
-	public int deleteOne(User user)throws DataAccessException;
+	public int deleteOne(String userId)throws DataAccessException;
+
+	
 }
