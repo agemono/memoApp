@@ -7,8 +7,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.user.User;
+
+@Repository("UserDaojdbcInml")
 
 public class UserDaojdbcImpl implements UserDaojdbc {
 
