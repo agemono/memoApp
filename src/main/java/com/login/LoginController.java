@@ -10,24 +10,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.repositories.loginDataRepository;
 import com.user.User;
+import com.user.UserService;
 
 
 @Controller
 public class LoginController<MyDataRepository> {
 
-	@Autowired
-	loginDataRepository repository;
+	/*	@Autowired
+		loginDataRepository repository;*/
 
+	@Autowired
+	UserService userService;
 
 	@PostConstruct
 	public void init() {
 		//テストデータ
-		User testuser = new User();
-		testuser.setUserid("shota");
-		testuser.setPassword("shota");
-		repository.saveAndFlush(testuser);
+		/*		User testuser = new User();
+				testuser.setUserid("shota");
+				testuser.setPassword("shota");
+				repository.saveAndFlush(testuser);*/
 
 	}
 
@@ -41,21 +43,21 @@ public class LoginController<MyDataRepository> {
 	@RequestMapping(value = "login",method = RequestMethod.POST)
 	@Transactional(readOnly = false)
 	public ModelAndView Login(
-			/*@RequestParam("logindata") loginData ld,*/
 			@ModelAttribute("logindata") User ld,
-			/*			@ModelAttribute("userid") String userid,
-						@ModelAttribute("pasword") String password,*/
 									ModelAndView mav) {
 		mav.setViewName("login");
 
-		User data = repository.findByUserid((String) ld.getUserid());
-
-		String pass1 = data.getPassword();
-		String pass2 = ld.getPassword();
-		if(pass1.equals(pass2)) {
-
-			return new ModelAndView("redirect:/memo");
-		}
+		User user = new User();
+		
+		
+		/*		User data = repository.findByUserid((String) ld.getUserid());
+		
+				String pass1 = data.getPassword();
+				String pass2 = ld.getPassword();*/
+		/*		if(pass1.equals(pass2)) {
+		
+					return new ModelAndView("redirect:/memo");
+				}*/
 		return mav;
 	}
 
