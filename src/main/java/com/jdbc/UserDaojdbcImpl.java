@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.user.User;
@@ -18,6 +19,8 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 	@Autowired
 	JdbcTemplate jdbc;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@Override
 	public int count() throws DataAccessException {
@@ -31,12 +34,14 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 	public int insertOne(User user) throws DataAccessException {
 		// TODO 自動生成されたメソッド・スタブ
 		
+		String password = passwordEncoder.encode(user.getPassword());
+		
 		int rowNumber = jdbc.update("INSERT INTO user_info("
 				+ "user_id"
 				+ "user_pssword)"
 				+ "VALUES(?,?)"
 				,user.getUserid()
-				,user.getPassword());
+				,password);
 		return rowNumber;
 	}
 
@@ -96,13 +101,16 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 
 	@Override
 	public int updateOne(User user) throws DataAccessException {
+		String password = passwordEncoder.encode(user.getPassword());
+		
 		int rowNumber = jdbc.update("UPDATE user_info("
 				+ "SET "
 				+ "user_id"
 				+ "user_pssword)"
 				+ "VALUES(?,?)"
 				,user.getUserid()
-				,user.getPassword());
+				,password);
+		
 		return rowNumber;
 	}
 

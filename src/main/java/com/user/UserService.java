@@ -11,7 +11,7 @@ import com.jdbc.UserDaojdbc;
 @Service
 public class UserService {
 	
-	@Qualifier("UserDaojdbcImpl2")
+	@Qualifier("UserDaojdbcImpl")
 	@Autowired
 	UserDaojdbc dao;
 	

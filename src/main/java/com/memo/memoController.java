@@ -29,7 +29,7 @@ public class memoController {
 	public ModelAndView postMemo(@ModelAttribute("memodata")memoData memo,
 								ModelAndView mav) {
 		mav.addObject("memo");
-		repository.saveAndFlush(memo);
+
 		return mav;
 
 	}
