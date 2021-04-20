@@ -33,6 +33,7 @@ public class SignUpController {
 			ModelAndView mav) {
 		
 		mav.setViewName("SignUp");
+		
 		if(bindingresult.hasErrors()) {
 			return mav;
 		}

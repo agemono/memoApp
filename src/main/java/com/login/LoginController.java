@@ -2,16 +2,15 @@ package com.login;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.user.User;
-import com.user.UserService;
 
 
 @Controller
@@ -20,8 +19,8 @@ public class LoginController<MyDataRepository> {
 	/*	@Autowired
 		loginDataRepository repository;*/
 
-	@Autowired
-	UserService userService;
+	/*@Autowired
+	UserService userService;*/
 
 	@PostConstruct
 	public void init() {
@@ -35,7 +34,7 @@ public class LoginController<MyDataRepository> {
 
 		@RequestMapping(value = "/login",method = RequestMethod.GET)
 		public ModelAndView getLogin( ModelAndView mav,
-										@ModelAttribute("logindata")User logindata) {
+										@ModelAttribute("formdata")User formdata) {
 			mav.setViewName("login");
 			return mav;
 		}
@@ -43,11 +42,23 @@ public class LoginController<MyDataRepository> {
 	@RequestMapping(value = "login",method = RequestMethod.POST)
 	@Transactional(readOnly = false)
 	public ModelAndView Login(
-			@ModelAttribute("logindata") User ld,
+			@ModelAttribute("logindata") User formdata,
+			BindingResult bindingresult,
+			
 									ModelAndView mav) {
 		mav.setViewName("login");
-
+		
+		if(bindingresult.hasErrors()) {
+			return mav;
+		}
+		
 		User user = new User();
+		
+		
+		user.getUserid();
+		user.getPassword();
+		
+		System.out.println(formdata);
 		
 		
 		/*		User data = repository.findByUserid((String) ld.getUserid());

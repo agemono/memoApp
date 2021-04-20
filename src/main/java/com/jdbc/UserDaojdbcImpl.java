@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.user.User;
 
-@Repository("UserDaojdbcInml")
+@Repository("UserDaojdbcImpl")
 
 public class UserDaojdbcImpl implements UserDaojdbc {
 
