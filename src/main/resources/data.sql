@@ -1,7 +1,5 @@
-CREATE DATABASE memoAppDB;
-USE memoAppDB;
 
-GRANT ALL ON memoAppDB.* TO 'memoAppManeger'@'your_client_host';
+GRANT ALL ON memoAppDB.* TO 'springuser'@'localhost';
 
 
 INSERT INTO user_info(user_id, user_password)

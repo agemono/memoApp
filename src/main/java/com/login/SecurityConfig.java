@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 @Configuration
@@ -25,10 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	@Autowired
-	private DataSource datesource;
+	private DataSource datasource;
 	
-	private static final String USER_SQL = "SELECT" + "user_id" + "password"
-											+ "FROM user_info + WHERE user_id = ?";
+	private static final String USER_SQL = "SELECT user_id, user_password "
+											+ "FROM user_info WHERE user_id=?";
 	
 	@Override
 	public void configure(WebSecurity web)throws Exception
@@ -52,19 +51,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http
 			.formLogin()
-				.loginProcessingUrl("/login")
+				.loginProcessingUrl("@{/login}")
 				.loginPage("/login")					//ログインページ
 				.usernameParameter("user_id")
 				.passwordParameter("user_password")		//パスワード
-				.defaultSuccessUrl("memo",true);		//ログイン成功後の遷移先
+				.failureUrl("/error")
+				.defaultSuccessUrl("/memo",true);		//ログイン成功後の遷移先
+				
 		
 			//ログアウト処理
 		
-		http
-			.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/login");
+			/*http
+				.logout()
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+					.logoutUrl("/logout")
+					.logoutSuccessUrl("/login");*/
 	}
 	
 	@Override
@@ -72,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//ユーザーデータの取得
 		
 		auth.jdbcAuthentication()
-			.dataSource(datesource)
+			.dataSource(datasource)
 			.usersByUsernameQuery(USER_SQL)
 			.passwordEncoder(passwordEncoder());
 			

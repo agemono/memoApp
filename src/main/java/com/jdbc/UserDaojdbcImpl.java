@@ -37,8 +37,8 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 		String password = passwordEncoder.encode(user.getPassword());
 		
 		int rowNumber = jdbc.update("INSERT INTO user_info("
-				+ "user_id"
-				+ "user_pssword)"
+				+ "user_id, "
+				+ "user_password)"
 				+ "VALUES(?,?)"
 				,user.getUserid()
 				,password);
@@ -105,8 +105,8 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 		
 		int rowNumber = jdbc.update("UPDATE user_info("
 				+ "SET "
-				+ "user_id"
-				+ "user_pssword)"
+				+ "user_id, "
+				+ "user_password)"
 				+ "VALUES(?,?)"
 				,user.getUserid()
 				,password);
@@ -119,7 +119,7 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 		int rowNumber = jdbc.update("DELETE FROM user_info("
 				+ "WHERE "
 				+ "user_id"
-				+ "=?"
+				+ "=?)"
 				
 				,userId
 				);

@@ -25,7 +25,7 @@ public class memoData {
 	@Getter
 	@Setter
 	@Column(length = 200)
-	private String Memo;
+	private String memo;
 
 	@Getter
 	@Setter

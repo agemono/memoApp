@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.user.User;
 
-
 @Controller
 public class LoginController<MyDataRepository> {
 
@@ -32,26 +31,32 @@ public class LoginController<MyDataRepository> {
 
 	}
 
-		@RequestMapping(value = "/login",method = RequestMethod.GET)
-		public ModelAndView getLogin( ModelAndView mav,
-										@ModelAttribute("formdata")User formdata) {
-			mav.setViewName("login");
-			return mav;
-		}
-
-	@RequestMapping(value = "login",method = RequestMethod.POST)
-	@Transactional(readOnly = false)
-	public ModelAndView Login(
-			@ModelAttribute("logindata") User formdata,
-			BindingResult bindingresult,
-			
-									ModelAndView mav) {
+	
+	/*@RequestMapping(value = "/login")
+	public ModelAndView getLogin(ModelAndView mav,
+			@ModelAttribute("formdata") User formdata) {
 		mav.setViewName("login");
-		
-		if(bindingresult.hasErrors()) {
+		return mav;
+	}*/
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView getLogin(ModelAndView mav,
+			@ModelAttribute("formdata") User formdata) {
+		mav.setViewName("login");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@Transactional(readOnly = false)
+	public ModelAndView postLogin(
+			@ModelAttribute("formdata") User formdata,
+			BindingResult bindingresult,
+	
+			ModelAndView mav) {
+	
+		if (bindingresult.hasErrors()) {
 			return mav;
 		}
-		
+	
 		User user = new User();
 		
 		
@@ -59,21 +64,18 @@ public class LoginController<MyDataRepository> {
 		user.getPassword();
 		
 		System.out.println(formdata);
+		System.out.println(user);
 		
-		
-		/*		User data = repository.findByUserid((String) ld.getUserid());
+		/*mav.setViewName("memo");
+				User data = repository.findByUserid((String) ld.getUserid());
 		
 				String pass1 = data.getPassword();
-				String pass2 = ld.getPassword();*/
-		/*		if(pass1.equals(pass2)) {
+				String pass2 = ld.getPassword();
+				if(pass1.equals(pass2)) {
 		
 					return new ModelAndView("redirect:/memo");
 				}*/
 		return mav;
 	}
-
-
-
-
-
+	
 }

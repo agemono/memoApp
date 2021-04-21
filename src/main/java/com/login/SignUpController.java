@@ -19,7 +19,7 @@ public class SignUpController {
 	@RequestMapping(value = "/SignUp",method = RequestMethod.GET)
 	public ModelAndView getSignUp(
 									ModelAndView mav,
-									@ModelAttribute("signupdata")User formdata) {
+									@ModelAttribute("formdata")User formdata) {
 		mav.addObject("title", "登録画面");
 		mav.setViewName("SignUp");
 		/*mav.addObject("signupdata", new loginData());*/
@@ -28,7 +28,7 @@ public class SignUpController {
 
 	@RequestMapping(value = "/SignUp",method = RequestMethod.POST)
 	public ModelAndView postSignUp(
-			@ModelAttribute("signupdata") User formdata,
+			@ModelAttribute("formdata") User formdata,
 			BindingResult bindingresult,
 			ModelAndView mav) {
 		

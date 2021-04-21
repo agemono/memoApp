@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <meta charset="UTF-8">
@@ -44,8 +45,7 @@
 
 <body>
     <div>
-        <table>
-            <form method="post" action="/SignUp" th:object="${formdata}">
+            <form method="post" th:action="@{/SignUp}" th:object="${formdata}">
 
                 <label>ログインID</label>
                 <input type="text" id="userid" name="userid" th:text="*{userid}" required/>
@@ -54,7 +54,7 @@
 
                 <button class="btn-primary" type="submit">登録</button>
             </form>
-        </table>
+        
     </div>
     <a th:href="@{'/login'}">ログイン画面に戻る</a>
 </body>
