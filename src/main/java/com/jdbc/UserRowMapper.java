@@ -18,7 +18,7 @@ public class UserRowMapper implements RowMapper<User> {
 		
 		//ResultSetの取得結果をUserインスタンスにせっと
 		
-		user.setUserid(rs.getString("user_id"));
+		user.setUser_id(rs.getString("user_id"));
 		user.setPassword(rs.getString("user_password"));
 		return user;
 	}

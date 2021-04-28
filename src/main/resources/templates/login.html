@@ -13,17 +13,17 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <body>
     <h1>ログインページ</h1>
     <div class="login_Form">
-        <form method="post" th:action="@{/login} " th:object="${formdata} ">
+        <form th:method="post" th:action="@{/loginprocessing} " th:object="${formdata} ">
 
             <ul>
                 <li>
                     <label>ログインID</label>
-                    <input type="text" name="userid " th:value="*{userid}" required/>
+                    <input type="text" name="user_id " th:text="*{user_id}" required/>
 
                 </li>
                 <li>
                     <label>パスワード</label>
-                    <input type="password" name="password " th:value="*{password}" required/>
+                    <input type="password" name="password " th:text="*{password}" required/>
                 </li>
                
 

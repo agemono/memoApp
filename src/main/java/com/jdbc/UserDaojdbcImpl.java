@@ -40,7 +40,7 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 				+ "user_id, "
 				+ "user_password)"
 				+ "VALUES(?,?)"
-				,user.getUserid()
+				,user.getUser_id()
 				,password);
 		return rowNumber;
 	}
@@ -61,7 +61,7 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 		
 		//取得したデータを結果返却用の変数に格納]
 		
-		user.setUserid((String)map.get("user_id"));	//ユーザーID
+		user.setUser_id((String)map.get("user_id"));	//ユーザーID
 		
 		user.setPassword((String)map.get("user_password"));	//パスワード
 		
@@ -87,7 +87,7 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 			
 			//Userインスタンスに取得したデータをセットする
 			
-			user.setUserid((String)map.get("user_id"));	//ユーザーID
+			user.setUser_id((String)map.get("user_id"));	//ユーザーID
 			
 			user.setPassword((String)map.get("user_password"));	//パスワード
 			
@@ -108,7 +108,7 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 				+ "user_id, "
 				+ "user_password)"
 				+ "VALUES(?,?)"
-				,user.getUserid()
+				,user.getUser_id()
 				,password);
 		
 		return rowNumber;

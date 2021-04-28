@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.repositories.memoDataRepository;
-
 @Controller
 public class memoController {
 
-	memoDataRepository repository;
+	
 
 	@RequestMapping(value = "/memo",method = RequestMethod.GET)
 	public ModelAndView getMemo(@ModelAttribute("memodata")memoData memo,

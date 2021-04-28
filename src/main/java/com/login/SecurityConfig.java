@@ -16,66 +16,65 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @Configuration
 
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
-	@Bean 
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Autowired
 	private DataSource datasource;
 	
-	private static final String USER_SQL = "SELECT user_id, user_password "
+	private static final String USER_SQL = "SELECT * "
 											+ "FROM user_info WHERE user_id=?";
-	
+
 	@Override
-	public void configure(WebSecurity web)throws Exception
-	{
+	public void configure(WebSecurity web) throws Exception {
 		//静的リソース除外
-		web.ignoring().antMatchers(".webjars/**","/css/**");
+		web.ignoring().antMatchers(".webjars/**", "/css/**");
 	}
-	
+
 	@Override
-	protected void configure(HttpSecurity http) throws Exception{
+	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-				.antMatchers("/webjars/**").permitAll()			//webjarsにアクセス許可
-				.antMatchers(".webjars/**","/css/**").permitAll()
-				.antMatchers("/login").permitAll()			
-				.antMatchers("/SignUp").permitAll()					//ログイン、ユーザー登録はじかりんくOK 
+				.authorizeRequests()
+				.antMatchers("/webjars/**").permitAll() //webjarsにアクセス許可
+				.antMatchers(".webjars/**", "/css/**").permitAll()
+				.antMatchers("/login").permitAll()
+				.antMatchers("/SignUp").permitAll() //ログイン、ユーザー登録はじかりんくOK 
 				.anyRequest().authenticated();
-		
-		
-			//ログイン処理
-		
+
+		//ログイン処理
+
 		http
-			.formLogin()
-				.loginProcessingUrl("@{/login}")
-				.loginPage("/login")					//ログインページ
+				.formLogin()
+				.loginProcessingUrl("/loginprocessing")
+				.loginPage("/login") //ログインページ
 				.usernameParameter("user_id")
-				.passwordParameter("user_password")		//パスワード
+				.passwordParameter("password") //パスワード
 				.failureUrl("/error")
-				.defaultSuccessUrl("/memo",true);		//ログイン成功後の遷移先
-				
-		
-			//ログアウト処理
-		
-			/*http
-				.logout()
-					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-					.logoutUrl("/logout")
-					.logoutSuccessUrl("/login");*/
+				.defaultSuccessUrl("/memo", true); //ログイン成功後の遷移先
+
+		//ログアウト処理
+
+		/*http
+			.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login");*/
 	}
-	
+
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth)throws Exception{
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		//ユーザーデータの取得
-		
-		auth.jdbcAuthentication()
-			.dataSource(datasource)
-			.usersByUsernameQuery(USER_SQL)
-			.passwordEncoder(passwordEncoder());
+
+				auth.jdbcAuthentication()
+					.dataSource(datasource)
+					.usersByUsernameQuery(USER_SQL)
+					.passwordEncoder(passwordEncoder());
+				
 			
+
 	}
 }

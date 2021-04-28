@@ -40,7 +40,7 @@ public class SignUpController {
 		
 		User user = new User();
 		
-		user.setUserid(formdata.getUserid());
+		user.setUser_id(formdata.getUser_id());
 		user.setPassword(formdata.getPassword());
 		
 		System.out.println(formdata);
