@@ -27,5 +27,15 @@ public class UserService {
 		return result;
 	}
 
+	public boolean select(String user_id) {
+		
+		
+		boolean result = false;
+		
+		
+		
+		return result;
+		
+	}
 	
 }

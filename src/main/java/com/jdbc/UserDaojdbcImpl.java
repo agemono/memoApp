@@ -52,7 +52,7 @@ public class UserDaojdbcImpl implements UserDaojdbc {
 		//一件取得
 		
 		Map<String, Object> map = jdbc.queryForMap(
-				"SELECT * FROM user_info"
+				"SELECT * FROM user_info "
 				+ "WHERE user_id = ?",userId);
 		
 		//結果返却用の変数

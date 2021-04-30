@@ -24,24 +24,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Autowired
+	LoginUserDetailService uds;
+	
+	@Autowired
 	private DataSource datasource;
 	
 	private static final String USER_SQL = "SELECT * "
-											+ "FROM user_info WHERE user_id=?";
+											+ "FROM user_info WHERE user_id = ? ";
+	
+	private static final String ROLE_SQL = "SELECT user_id, role FROM user_info WHERE user_id = ?";
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		//静的リソース除外
-		web.ignoring().antMatchers(".webjars/**", "/css/**");
+		web.ignoring().antMatchers( "/css/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/webjars/**").permitAll() //webjarsにアクセス許可
-				.antMatchers(".webjars/**", "/css/**").permitAll()
+				.antMatchers("/css/**").permitAll()
 				.antMatchers("/login").permitAll()
+				.antMatchers("/loginprocessing").permitAll()
+				.antMatchers("/error").permitAll()
 				.antMatchers("/SignUp").permitAll() //ログイン、ユーザー登録はじかりんくOK 
 				.anyRequest().authenticated();
 
@@ -49,15 +55,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http
 				.formLogin()
-				.loginProcessingUrl("/loginprocessing")
-				.loginPage("/login") //ログインページ
+				.loginPage("/login") 						//ログインページ
+				.loginProcessingUrl("/loginprocessing")									
 				.usernameParameter("user_id")
-				.passwordParameter("password") //パスワード
+				.passwordParameter("password") 				//パスワード
 				.failureUrl("/error")
-				.defaultSuccessUrl("/memo", true); //ログイン成功後の遷移先
-
+				.defaultSuccessUrl("/memo", true); 			//ログイン成功後の遷移先
+				
+		//http.csrf().disable();
 		//ログアウト処理
-
+		
 		/*http
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -69,12 +76,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		//ユーザーデータの取得
 
-				auth.jdbcAuthentication()
-					.dataSource(datasource)
-					.usersByUsernameQuery(USER_SQL)
-					.passwordEncoder(passwordEncoder());
+			auth.jdbcAuthentication()
+				.dataSource(datasource)
+				.usersByUsernameQuery(USER_SQL)
+				.authoritiesByUsernameQuery(ROLE_SQL)
+				.passwordEncoder(passwordEncoder());
 				
-			
-
+		//auth.userDetailsService(uds).passwordEncoder(passwordEncoder());
+				
 	}
 }
